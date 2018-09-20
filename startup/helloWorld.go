@@ -21,12 +21,12 @@ func main() {
 	for m := 3; m < maxInt; m++ {
 		// m を判定する
 		var isPrime bool = true
-		for mm := 0; mm < len(primeTable); mm++ {
-			if primeTable[mm] == 0 {
+		for _, mm := range primeTable {
+			if mm == 0 {
 				break
 			}
-			fmt.Println(strconv.Itoa(m) + " ÷ " + strconv.Itoa(primeTable[mm]))
-			var remainder = m % primeTable[mm]
+			fmt.Println(strconv.Itoa(m) + " ÷ " + strconv.Itoa(mm))
+			var remainder = m % mm
 			if remainder == 0 {
 				isPrime = false
 			}
