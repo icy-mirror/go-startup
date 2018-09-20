@@ -14,8 +14,8 @@ func main() {
 		arr[n] = n + 1
 	}
 
-	fmt.Println("start prime Judging")
-	var primeTable [maxInt]int = [maxInt]int{}
+	fmt.Println("start Prime Judging")
+	var primeTable = make([]int, 1)
 	primeTable[0] = 2
 	var cnt int = 1
 	for m := 3; m < maxInt; m++ {
@@ -35,7 +35,7 @@ func main() {
 			}
 		}
 		if isPrime {
-			primeTable[cnt] = m
+			primeTable = append(primeTable, m)
 			cnt++
 		}
 	}
