@@ -8,6 +8,6 @@ import (
 
 func main() {
 	setting.InitializeIni()
-	fmt.Println("okok")
-	setting.GetIniVal("enter mission!")
+	fmt.Println(setting.GetIniVal("enter mission!"))
+	fmt.Println(setting.GetIniVal("db-file-dir"))
 }

@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 )
 
 var reader *bufio.Reader
+var iniMap map[string]string
 
 /**
   Load Setting and parse
@@ -21,18 +23,26 @@ func InitializeIni() {
 		os.Exit(50)
 	}
 	reader = bufio.NewReader(iniFile)
-
-	fmt.Println("ok")
-}
-
-func GetIniVal(key string) string {
-	fmt.Println("key: " + key)
 	for {
 		str, err := reader.ReadString('\n')
 		if err == io.EOF {
 			break
 		}
-		fmt.Println(str)
+		if !strings.Contains(str, "=") || strings.HasPrefix(str, "#") {
+			continue
+		}
+		temp := strings.Split(str, "=")
+		key := temp[0]
+		val := temp[1]
+		if iniMap == nil {
+			iniMap = make(map[string]string, 1)
+		}
+		iniMap[key] = val
 	}
-	return "hoge"
+
+	fmt.Println("ini ok")
+}
+
+func GetIniVal(key string) string {
+	return iniMap[key]
 }
